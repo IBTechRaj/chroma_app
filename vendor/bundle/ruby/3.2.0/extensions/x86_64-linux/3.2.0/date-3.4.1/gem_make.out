@@ -1,0 +1,24 @@
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/date-3.4.1/ext/date
+/home/raj/.rbenv/versions/3.2.0/bin/ruby -I /home/raj/.rbenv/versions/3.2.0/lib/ruby/3.2.0 extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with  -Werror... yes
+checking for altzone in time.h with  -Werror... no
+creating Makefile
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/date-3.4.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-adzc5l sitelibdir\=./.gem.20241226-22404-adzc5l clean
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/date-3.4.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-adzc5l sitelibdir\=./.gem.20241226-22404-adzc5l
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/date-3.4.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-adzc5l sitelibdir\=./.gem.20241226-22404-adzc5l install
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20241226-22404-adzc5l
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/date-3.4.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-adzc5l sitelibdir\=./.gem.20241226-22404-adzc5l clean

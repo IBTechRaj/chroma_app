@@ -1,0 +1,19 @@
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/debug-1.10.0/ext/debug
+/home/raj/.rbenv/versions/3.2.0/bin/ruby -I /home/raj/.rbenv/versions/3.2.0/lib/ruby/3.2.0 extconf.rb
+creating Makefile
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-kc2559 sitelibdir\=./.gem.20241226-22404-kc2559 clean
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-kc2559 sitelibdir\=./.gem.20241226-22404-kc2559
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-kc2559 sitelibdir\=./.gem.20241226-22404-kc2559 install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20241226-22404-kc2559/debug
+
+current directory: /home/raj/chroma/chroma_app/vendor/bundle/ruby/3.2.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241226-22404-kc2559 sitelibdir\=./.gem.20241226-22404-kc2559 clean
