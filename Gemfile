@@ -24,6 +24,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'jwt'
 
 gem 'faker', '~> 2.19'
+gem 'cloudinary'
+gem 'activestorage', '~> 8.0' # Make sure Active Storage is included
 
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -50,6 +52,15 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem 'rspec-rails', '~> 6.0'
+   gem 'factory_bot_rails'
+   gem 'byebug'
 end
+group :test do
+  gem 'database_cleaner-active_record'
+   gem 'shoulda-matchers', '~> 5.0'
+end
+
 
 
