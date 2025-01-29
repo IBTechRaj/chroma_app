@@ -4,28 +4,27 @@ class User < ApplicationRecord
   has_many :orders
   has_many :carts
 
-    # before_save :generate_token
+  ROLES =  %w[admin supervisor customer].freeze
+
+  validates :role, inclusion: { in: ROLES }
 
   validates :name, :email, presence: true
   validates :email, uniqueness: true
-   validates :profile_pic, format: { with: /\Ahttps?:\/\/.*\.(jpg|jpeg|png|gif)\z/i, message: 'must be a valid image URL' }, allow_blank: true
+  #  validates :profile_pic, format: { with: /\Ahttps?:\/\/.*\.(jpg|jpeg|png|gif)\z/i, message: 'must be a valid image URL' }, allow_blank: true
 
-   private
-# def generate_token
-#   byebug
-#   self.token ||= SecureRandom.hex
-# end
+    def admin?
+    role == 'admin'
+  end
 
-  # def acceptable_image
-  #   return unless profile_pic.attached?
+  def supervisor?
+    role == 'supervisor'
+  end
 
-  #   errors.add(:profile_pic, 'must be less than 5MB') if profile_pic.byte_size > 5.megabytes
+  def customer?
+    role == 'customer'
+  end
 
-  #   acceptable_types = ['image/jpeg', 'image/png', 'image/gif']
-  #   errors.add(:profile_pic, 'must be a JPEG, PNG, or GIF') unless acceptable_types.include?(profile_pic.content_type)
-  # end
-  # def full_name
-  #   name
-  # end
-  
+  def get_profile_pic_url
+      Rails.application.routes.url_helpers.url_for(profile_pic) if profile_pic.attached?
+    end
 end

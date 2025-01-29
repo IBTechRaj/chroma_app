@@ -22,6 +22,7 @@ gem "solid_cable"
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'jwt'
+gem 'fast_jsonapi'
 
 gem 'faker', '~> 2.19'
 gem 'cloudinary'

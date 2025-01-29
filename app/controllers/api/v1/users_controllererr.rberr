@@ -1,0 +1,145 @@
+module Api
+  module V1
+    class UsersController < ApplicationController
+      # before_action :set_user, only: [:show, :update, :destroy]
+    
+
+      def index
+        users = User.all
+        render json: users, status: :ok
+      end
+
+      def show
+        render json: @user
+      end
+
+      def create
+        # byebug 
+        @user = User.new(user_params)
+        # puts 'u'
+        # puts user_params
+        # puts @user
+
+        if @user.save!
+          render json: { message: 'User created successfully' }, status: :created
+        else
+          puts  @user.errors.full_messages
+          render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      def login
+        query_email = params[:email].downcase
+        user = User.find_by_email(query_email)
+        # byebug
+
+        if user && user.authenticate(params[:password]) # Verify password
+          token = encode(user.id) # Generate JWT for the user
+          render json: { message: 'Logged in successfully', token: token }, status: :ok
+        else
+          render json: { error: 'Invalid email or password' }, status: :unauthorized
+        end
+      end
+    
+      def logout
+    # Simply respond with success (optional: log this action)
+        render json: { message: 'Logged out successfully' }, status: :ok
+      end
+  
+ def current_user
+    # byebug
+    token = request.headers['Authorization']&.split(' ')&.last
+    #  puts 't'
+    #  puts  Rails.logger.info "Extracted Token: #{token}" 
+      @token = JsonWebToken.decode(token)
+      @user = User.find_by(id: @token.id)
+      if @user.present?
+      render json: {
+        id: @user.id,
+        name: @user.name,
+        email: @user.email,
+        role: @user.role,
+        # Add any other fields you want to expose
+      }, status: :ok
+    else
+      render json: { error: 'No current user' }, status: :unauthorized
+    end
+  end
+      # if user
+      #   if user.authenticate(params[:password])
+           
+      #       render json: User.new(user, meta: {
+      #         token: encode(user.id),
+      #       }).serializable_hash, status: :created
+      #   else
+      #     render json: { errors: 'Invalid email or password'}, status: :unprocessable_entity
+      #   end
+        
+      # else
+      #   render json: { errors: 'Invalid email or password'}, status: :unprocessable_entity
+      # end
+      # end   
+
+      def update
+        if @user.update(user_params)
+          render json: { message: 'User updated successfully' }, status: :updated
+        else
+          render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        @user.destroy
+        head :no_content
+      end
+
+      
+      private
+
+      def encode(id)
+        JsonWebToken.encode id
+      end
+
+  #     def current_user
+  #   @current_user = User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+  #   render json: { error: 'Unauthorized' }, status: :unauthorized unless @current_user
+  # end
+
+  # # Decode the JWT token
+  # def decoded_auth_token
+  #   token = request.headers['Authorization']&.split(' ')&.last
+  #   return JsonWebToken.decode(token) if token
+
+  #   nil
+  # end
+      
+# def current_user
+#   # byebug
+#      token = request.headers['Authorization']&.split(' ')&.last
+#      puts 't'
+#      puts  Rails.logger.info "Extracted Token: #{token}" 
+#       @token = JsonWebToken.decode(token)
+#       @user = User.find_by(id: @token.id)
+#       puts @user.email
+#       if @user.blank?
+#   render json: { errors: [{ token: I18n.t('invalid_token') }] }, status: :unprocessable_entity
+#   # return
+# end
+#       # render json: {errors: [{token: I18n.t('invalid_token')},]}, status: :unprocessable_entity and return unless @user.present?
+#     end
+
+      def set_user
+        @user = User.find(params[:id])
+      end
+
+      # def user_params
+      #   params.permit(:name, :email, :password, :password_confirmation, :profile_pic)
+      # end
+        
+      def user_params
+        params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_pic)
+      end
+
+    end
+  end
+end
