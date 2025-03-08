@@ -2,9 +2,9 @@ class User < ApplicationRecord
     has_secure_password
     has_one_attached :profile_pic
   has_many :orders
-  has_many :carts
+  has_one :cart, dependent: :destroy
 
-  ROLES =  %w[admin supervisor customer].freeze
+  ROLES =  %w[Admin Supervisor Customer].freeze
 
   validates :role, inclusion: { in: ROLES }
 
@@ -26,5 +26,11 @@ class User < ApplicationRecord
 
   def get_profile_pic_url
       Rails.application.routes.url_helpers.url_for(profile_pic) if profile_pic.attached?
-    end
+    # profile_pic.service_url if profile_pic.attached?
+  end
+
+  def find_or_create_cart
+    cart || build_cart.save!
+    cart
+  end
 end

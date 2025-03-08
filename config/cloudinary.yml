@@ -1,0 +1,22 @@
+development: 
+  cloud_name: "djjzr6xii"
+  api_key: "562145566961783"
+  api_secret: "Ng7gSFRe6DzZWqCuhX-VOv3W-pQ"
+  secure: true
+  cdn_subdomain: true
+
+production: 
+  cloud_name: "djjzr6xii"
+  api_key: "562145566961783"
+  api_secret: "Ng7gSFRe6DzZWqCuhX-VOv3W-pQ"
+  secure: true
+  cdn_subdomain: true
+
+test: 
+  cloud_name: "djjzr6xii"
+  api_key: "562145566961783"
+  api_secret: "Ng7gSFRe6DzZWqCuhX-VOv3W-pQ"
+  secure: true
+  cdn_subdomain: true
+
+  # CLOUDINARY_URL=cloudinary://562145566961783:Ng7gSFRe6DzZWqCuhX-VOv3W-pQ@djjzr6xii
