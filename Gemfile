@@ -24,7 +24,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'jwt'
 gem 'fast_jsonapi'
 
-gem 'faker', '~> 2.19'
+gem 'faker', '~> 3.5'
 gem 'cloudinary'
 gem 'activestorage', '~> 8.0' # Make sure Active Storage is included
 
